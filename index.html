@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>JS Decryptor — Hard / Eval / Name / Bulan</title>
+  <style>
+    :root{--bg:#0b1220;--card:#0f1724;--accent:#06b6d4;--muted:#94a3b8;--text:#e6eef6}
+    body{margin:0;font-family:Inter, system-ui, Arial;background:linear-gradient(180deg,#031027,#081229);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+    .wrap{width:100%;max-width:1100px}
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 30px rgba(2,6,23,.6)}
+    h1{margin:0 0 6px 0;font-size:20px}
+    p.sub{margin:0;color:var(--muted);font-size:13px}
+    textarea{width:100%;min-height:160px;padding:12px;border-radius:8px;border:1px solid #111;background:#051026;color:var(--text);resize:vertical}
+    select,input,button{padding:8px;border-radius:8px;border:1px solid #12283a;background:#071629;color:var(--text)}
+    .row{display:flex;gap:10px;margin-top:10px}
+    .col{flex:1}
+    .small{font-size:13px;color:var(--muted)}
+    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .out{margin-top:12px}
+    pre{background:#061425;padding:12px;border-radius:8px;white-space:pre-wrap;word-break:break-word}
+    .log{background:#041622;color:#9fd6e0;padding:8px;border-radius:6px;font-size:12px}
+    .badge{background:#083243;padding:6px;border-radius:6px;font-size:12px}
+    footer{margin-top:12px;color:var(--muted);font-size:13px}
+    .danger{color:#ffb4b4}
+  </style>
+</head>
+<body>
+  <div class="wrap card">
+    <h1>JS Decryptor — hard / eval / name / bulan</h1>
+    <p class="sub">Alat edukasi untuk **membantu memahami** kode JS yang di-encode/obfuscate. <span class="danger">Jangan gunakan untuk melanggar hukum atau bypass proteksi berbayar.</span></p>
+
+    <div style="margin-top:12px">
+      <label class="small">Input (paste kode/teks terenkripsi):</label>
+      <textarea id="input" placeholder="Paste kode JS atau string terenkripsi di sini..."></textarea>
+    </div>
+
+    <div class="controls">
+      <label><input type="checkbox" id="chkBase64" checked> Base64</label>
+      <label><input type="checkbox" id="chkHex"> Hex</label>
+      <label><input type="checkbox" id="chkUrl"> URL Decode</label>
+      <label><input type="checkbox" id="chkUnescape" checked> JS Unescape (\u, \x)</label>
+      <label><input type="checkbox" id="chkRot13"> ROT13</label>
+      <label><input type="checkbox" id="chkPacker" checked> Unpack eval(function(p,a,c,k,e,d)...)</label>
+      <label><input type="checkbox" id="chkHard" checked> Hard Decrypt (multi-pass)</label>
+      <label><input type="checkbox" id="chkMonth"> Month decode (1→Januari / Jan→1)</label>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label class="small">Optional: Identifier mapping (JSON) — ganti nama variabel obfuscated<br><span class="small">Contoh: {"a":"count","b":"username"}</span></label>
+        <textarea id="mapping" rows="3" placeholder='{"a":"count
